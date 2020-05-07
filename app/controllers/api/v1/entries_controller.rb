@@ -15,9 +15,12 @@ class Api::V1::EntriesController < ApplicationController
     else
       render json: { errors: entry.errors.full_message}, status: :unprocessible_entity
     end
+  end
 
     private
 
     def entry_params
       params.require(:entry).permit(:content, :category_id, :day_id)
+
+    end
 end
