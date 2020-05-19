@@ -9,9 +9,9 @@ class Api::V1::EntriesController < ApplicationController
   end
 
   def create
-    entry.new(entry_params)
+    entry = Entry.new(entry_params)
     if entry.save
-      render json: entry, status: :accepted
+      render json: EntrySerializer.new(entry), status: :accepted
     else
       render json: { errors: entry.errors.full_message}, status: :unprocessible_entity
     end
@@ -20,7 +20,7 @@ class Api::V1::EntriesController < ApplicationController
     private
 
     def entry_params
-      params.require(:entry).permit(:content, :category_id, :day_id)
+      params.require(:entry).permit(:content, :category_id)
 
     end
 end
