@@ -9,7 +9,7 @@ class Api::V1::DaysController < ApplicationController
 
   def create
     day = Day.new(day_params)
-    if entry.day
+    if day.save
       render json: DaySerializer.new(day), status: :accepted
     else
       render json: { errors: day.errors.full_message}, status: :unprocessible_entity
