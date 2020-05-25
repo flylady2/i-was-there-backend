@@ -2,7 +2,10 @@ class Api::V1::DaysController < ApplicationController
 
   #will have to change to searched for days, or maybe the day before?
   def index
-    days = Day.all
+    days = []
+    last_day = Day.all.first
+    days = days.push(last_day)
+
     #render json: DaySerializer.new(days)
     options = {
       include: [:entries]
