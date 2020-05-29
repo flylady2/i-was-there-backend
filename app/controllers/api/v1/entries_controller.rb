@@ -5,7 +5,9 @@ class Api::V1::EntriesController < ApplicationController
     options = {
       include: [:category, :day]
     }
-    render json: EntrySerializer.new(@entries, options)
+    hash = EntrySerializer.new(@entries, options).serialized_json
+    render json: hash
+    #render json: EntrySerializer.new(@entries, options)
   end
 
   def create
@@ -20,7 +22,7 @@ class Api::V1::EntriesController < ApplicationController
     private
 
     def entry_params
-      params.require(:entry).permit(:content, :category_id)
+      params.require(:entry).permit(:content, :category_id, :day_id)
 
     end
 end
