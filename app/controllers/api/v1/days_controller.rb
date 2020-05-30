@@ -24,6 +24,7 @@ class Api::V1::DaysController < ApplicationController
     #byebug
     @entry = @day.entries.build(content: params["entry_content"], category_id: params["category_id"])
     @entry.save
+    #byebug
     options = {
       include: [:entries]
     }
