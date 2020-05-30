@@ -24,9 +24,11 @@ class Api::V1::DaysController < ApplicationController
     #byebug
     @entry = @day.entries.build(content: params["entry_content"], category_id: params["category_id"])
     @entry.save
+    options = {
+      include: [:entries]
+    }
 
-
-    render json: DaySerializer.new(day), status: :accepted
+    render json: DaySerializer.new(@day, options), status: :accepted
     #else
       #render json: { errors: day.errors.full_message}, status: :unprocessible_entity
     #end
