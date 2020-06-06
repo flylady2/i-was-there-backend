@@ -8,7 +8,7 @@ class Api::V1::DaysController < ApplicationController
 
     #render json: DaySerializer.new(days)
     options = {
-      include: [:entries]
+      include: [:entries, :image]
     }
     render json: DaySerializer.new(days, options)
     #options = {include: [:entries]}
