@@ -40,6 +40,7 @@ class Api::V1::DaysController < ApplicationController
     #end
   end
 
+
     private
 
     def day_params
