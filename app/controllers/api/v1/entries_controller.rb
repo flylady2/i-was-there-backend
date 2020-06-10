@@ -21,8 +21,9 @@ class Api::V1::EntriesController < ApplicationController
 
   def update
     @entry = Entry.find(params[:id])
-    @entry.update(entry_params)
-    render json: EntrySerializer.new(entry), status: :accepted
+    
+    @entry.update(content: params["newContent"])
+    render json: EntrySerializer.new(@entry), status: :accepted
   end
 
     private
