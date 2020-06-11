@@ -8,7 +8,7 @@ class Api::V1::DaysController < ApplicationController
 
     #render json: DaySerializer.new(days)
     options = {
-      include: [:entries]
+      include: [:entries, :image]
     }
     render json: DaySerializer.new(days, options)
     #options = {include: [:entries]}
@@ -26,8 +26,12 @@ class Api::V1::DaysController < ApplicationController
 
     @entries.each {|entry|
       entry.save}
+
+    @image = @day.build_image(url: params["input_url"], caption: params["input_caption"])
+    @image.save
+
     options = {
-      include: [:entries]
+      include: [:entries, :image]
     }
     #byebug
     render json: DaySerializer.new(@day, options), status: :accepted
@@ -36,10 +40,16 @@ class Api::V1::DaysController < ApplicationController
     #end
   end
 
+  def destroy
+    @day = Day.find(params[:id])
+    @day.destroy
+  end
+
+
     private
 
     def day_params
-      params.require(:day).permit(:name, :date, entries_attributes: [:content, :day_id, :category_id])
+      params.require(:day).permit(:name, :date, entries_attributes: [:content, :day_id, :category_id], image_attributes: [:url, :caption, :day_id])
 
     end
 end

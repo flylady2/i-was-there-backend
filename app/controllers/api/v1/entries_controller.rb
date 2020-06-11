@@ -19,6 +19,13 @@ class Api::V1::EntriesController < ApplicationController
     end
   end
 
+  def update
+    @entry = Entry.find(params[:id])
+    
+    @entry.update(content: params["newContent"])
+    render json: EntrySerializer.new(@entry), status: :accepted
+  end
+
     private
 
     def entry_params
