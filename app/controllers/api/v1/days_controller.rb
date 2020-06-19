@@ -1,6 +1,14 @@
 class Api::V1::DaysController < ApplicationController
 
-  #will have to change to searched for days, or maybe the day before?
+  def find
+    @day = Day.search_by_date(params[:date])
+    options = {
+      include: [:entries, :image]
+    }
+    render json: DaySerializer.new(@day, options)
+  end#will have to change to searched for days, or maybe the day before?
+
+
   def index
     days = []
     last_day = Day.all.last
