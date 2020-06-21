@@ -6,7 +6,7 @@ class Day < ApplicationRecord
   accepts_nested_attributes_for :image, allow_destroy: true
 
   def self.search_by_date(date)
-    Day.where(date: date)
+    Day.where(date: date)[0]
   end
 
 end

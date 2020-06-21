@@ -8,28 +8,15 @@ class Api::V1::DaysController < ApplicationController
     #byebug
     if params[:date]
       last_day = Day.search_by_date(params[:date])
-      days = days.push(last_day)
-      options = {
-        include: [:entries, :image]
-      }
-      render json: DaySerializer.new(days, options)
-      #byebug
     else
       last_day = Day.all.last
-      #byebug
+    end
+    days = days.push(last_day)
+    options = {
+      include: [:entries, :image]
+    }
+    render json: DaySerializer.new(days, options)
 
-      days = days.push(last_day)
-    #byebug
-
-    #render json: DaySerializer.new(days)
-      options = {
-        include: [:entries, :image]
-      }
-      render json: DaySerializer.new(days, options)
-  end
-    #options = {include: [:entries]}
-    #hash = DaySerializer.new(days, options).serialized_json
-    #render json: hash
   end
 
   def create

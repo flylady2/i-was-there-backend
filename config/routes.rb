@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      post '/' => 'search#search'
+
 
       resources :entries, only: [:index, :create, :update]
       resources :images, only: [:index, :create]
