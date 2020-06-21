@@ -1,24 +1,32 @@
 class Api::V1::DaysController < ApplicationController
 
-  def find
-    @day = Day.search_by_date(params[:date])
-    options = {
-      include: [:entries, :image]
-    }
-    render json: DaySerializer.new(@day, options)
-  end#will have to change to searched for days, or maybe the day before?
+#will have to change to searched for days, or maybe the day before?
 
 
   def index
     days = []
-    last_day = Day.all.last
-    days = days.push(last_day)
+    #byebug
+    if params[:date]
+      last_day = Day.search_by_date(params[:date])
+      days = days.push(last_day)
+      options = {
+        include: [:entries, :image]
+      }
+      render json: DaySerializer.new(days, options)
+      #byebug
+    else
+      last_day = Day.all.last
+      #byebug
+
+      days = days.push(last_day)
+    #byebug
 
     #render json: DaySerializer.new(days)
-    options = {
-      include: [:entries, :image]
-    }
-    render json: DaySerializer.new(days, options)
+      options = {
+        include: [:entries, :image]
+      }
+      render json: DaySerializer.new(days, options)
+  end
     #options = {include: [:entries]}
     #hash = DaySerializer.new(days, options).serialized_json
     #render json: hash
