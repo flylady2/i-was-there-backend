@@ -37,9 +37,12 @@ class Api::V1::DaysController < ApplicationController
       include: [:entries, :image]
     }
     #byebug
-    render json: DaySerializer.new(@day, options), status: :accepted
-    #else
-      #render json: { errors: day.errors.full_message}, status: :unprocessible_entity
+    if @day.save
+      render json: DaySerializer.new(@day, options), status: :accepted
+    else
+      #byebug
+      render json: { errors: @day.errors.full_messages}, status: :unprocessable_entity
+    end
     #end
   end
 
