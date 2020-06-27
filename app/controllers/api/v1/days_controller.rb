@@ -23,21 +23,21 @@ class Api::V1::DaysController < ApplicationController
     #byebug
     @day = Day.new(day_params)
     #byebug
-    @day.save
+    if @day.save
 
-    @entries = @day.entries.build([{content: params["entry_content_1"], category_id: params["category_id_1"]}, {content: params["entry_content_2"], category_id: params["category_id_2"]}, {content: params["entry_content_3"], category_id: params["category_id_3"]}, {content: params["entry_content_4"], category_id: params["category_id_4"]}])
+      @entries = @day.entries.build([{content: params["entry_content_1"], category_id: params["category_id_1"]}, {content: params["entry_content_2"], category_id: params["category_id_2"]}, {content: params["entry_content_3"], category_id: params["category_id_3"]}, {content: params["entry_content_4"], category_id: params["category_id_4"]}])
 
-    @entries.each {|entry|
+      @entries.each {|entry|
       entry.save}
 
-    @image = @day.build_image(url: params["input_url"], caption: params["input_caption"])
-    @image.save
+      @image = @day.build_image(url: params["input_url"], caption: params["input_caption"])
+      @image.save
 
-    options = {
-      include: [:entries, :image]
-    }
+      options = {
+        include: [:entries, :image]
+      }
     #byebug
-    if @day.save
+  
       render json: DaySerializer.new(@day, options), status: :accepted
     else
       #byebug
