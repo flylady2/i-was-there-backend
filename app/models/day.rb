@@ -8,7 +8,7 @@ class Day < ApplicationRecord
   validates :date, presence: true
 
   def self.search_by_date(date)
-    Day.where(date: date)[0]
+    Day.where(date: date)
   end
 
 end
