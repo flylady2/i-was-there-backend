@@ -4,8 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
 
 
-      resources :entries, only: [:index, :create, :update]
-      resources :images, only: [:index, :create]
+      resources :entries, only: [:update]
+      #resources :images, only: [:index, :create]
       resources :days, only: [:index, :show, :create, :destroy] do
         resources :entries, only: [:new, :create]
         resources :image, only: [:new, :create]

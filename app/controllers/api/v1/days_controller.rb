@@ -4,19 +4,17 @@ class Api::V1::DaysController < ApplicationController
 
 
   def index
-    days = []
-    #byebug
+
     if params[:date]
-      last_day = Day.search_by_date(params[:date])
+      @day = Day.search_by_date(params[:date])
     else
-      last_day = Day.all.last
+      @day = Day.all.last
     end
-    days = days.push(last_day)
+
     options = {
       include: [:entries, :image]
     }
-    render json: DaySerializer.new(days, options)
-
+    render json: DaySerializer.new(@day, options)
   end
 
   def create
