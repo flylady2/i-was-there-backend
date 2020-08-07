@@ -6,6 +6,7 @@ class Day < ApplicationRecord
   accepts_nested_attributes_for :image, allow_destroy: true
   validates :name, presence: true
   validates :date, presence: true
+  validates :date, uniqueness: true
 
   def self.search_by_date(date)
     Day.where(date: date)
