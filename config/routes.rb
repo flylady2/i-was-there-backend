@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
 
       resources :entries, only: [:update]
-      #resources :images, only: [:index, :create]
+      
       resources :days, only: [:index, :show, :create, :destroy] do
         resources :entries, only: [:new, :create]
         resources :image, only: [:new, :create]
