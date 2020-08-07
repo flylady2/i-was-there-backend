@@ -11,12 +11,15 @@ Day.destroy_all
 category = Category.create(name: "What I'm Reading")
 #day = Day.create(name: "Friday", date: 20200501)
 category = Category.create(name: "Lesson Learned")
-category = Category.create(name: "Problem Solved")
 category = Category.create(name: "3 Things")
+category = Category.create(name: "Problem Solved")
+category = Category.create(name: "Theo Training")
 category = Category.create(name: "Something Nice!")
-category = Category.create(name: "Thinking About")
 category = Category.create(name: "In the Garden")
+category = Category.create(name: "Thinking About")
 category = Category.create(name: "In Progress")
+
+
 #entry = Entry.create(category_id: 1, day_id: 1, contents: "The Autobiography of Malcolm X", date: 20200430)
 #question = Question.create(number: 1, content: 'What is the capital city of Texas?')
 #answer = Answer.create(question_id: 1, content: 'Austin', correct: '1')
