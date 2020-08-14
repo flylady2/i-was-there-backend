@@ -13,7 +13,10 @@ class Api::V1::DaysController < ApplicationController
     options = {
       include: [:entries, :image]
     }
+
     render json: DaySerializer.new(@day, options)
+
+
   end
 
   def create
@@ -33,15 +36,15 @@ class Api::V1::DaysController < ApplicationController
       options = {
         include: [:entries, :image]
       }
-
-
       render json: DaySerializer.new(@day, options), status: :accepted
     else
 
       render json: { errors: @day.errors.full_messages}, status: :unprocessable_entity
+
     end
 
   end
+
 
 
     private
