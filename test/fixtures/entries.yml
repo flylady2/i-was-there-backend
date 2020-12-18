@@ -1,11 +1,22 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyString
-  date: 2020-04-30
-  belongs_to: 
+  id: 1
+  content: MyString1
+  day_id: 1
+  category_id: 1
 
 two:
-  content: MyString
-  date: 2020-04-30
-  belongs_to: 
+  content: MyString2
+  day_id: 1
+  category_id: 2
+
+#  three:
+#    content: MyString3
+    #date: 2020-12-12
+    #belongs_to: 1
+
+#  four:
+#    content: MyString3
+    #date: 2020-12-12
+    #belongs_to: 1
