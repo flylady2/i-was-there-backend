@@ -3,11 +3,9 @@
 one:
   url: MyString
   caption: MyString
-  belongs_to: MyString
-  day: MyString
+  day_id: 1
 
 two:
   url: MyString
   caption: MyString
-  belongs_to: MyString
-  day: MyString
+  day_id: 2

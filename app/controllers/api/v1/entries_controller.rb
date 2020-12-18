@@ -6,6 +6,7 @@ class Api::V1::EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
 
     @entry.update(content: params["newContent"])
+    #byebug
     render json: EntrySerializer.new(@entry), status: :accepted
   end
 
