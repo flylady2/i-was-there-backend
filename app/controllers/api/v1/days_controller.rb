@@ -1,5 +1,7 @@
 class Api::V1::DaysController < ApplicationController
 
+  before_action :authorized
+
   def index
 
 

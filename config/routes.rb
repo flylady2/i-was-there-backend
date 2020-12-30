@@ -3,9 +3,13 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
 
-
+      resources :users, only: [:index, :create,]
+      post '/login', to: 'auth#create'
+      #get '/newUserLogin', to: 'auth#newUserLogin'
+      post '/signup', to: 'users#create'
+      get '/page', to: 'users#page'
       resources :entries, only: [:update]
-      
+
       resources :days, only: [:index, :show, :create, :destroy] do
         resources :entries, only: [:new, :create]
         resources :image, only: [:new, :create]
