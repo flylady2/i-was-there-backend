@@ -3,12 +3,12 @@ class Api::V1::DaysController < ApplicationController
   before_action :authorized
 
   def index
-
-
+    days = Day.all.select { |day| day.user_id == current_user.id }
+    #byebug
     if params[:date]
-      @day = Day.search_by_date(params[:date])
+      @day = days.search_by_date(params[:date])
     else
-      @day = Day.all.last
+      @day = days.last
     end
 
 
@@ -23,7 +23,7 @@ class Api::V1::DaysController < ApplicationController
 
   def create
 
-    @day = Day.new(day_params)
+    @day = Day.new(day_params, user_id: current_user.id)
 
     if @day.save
 
@@ -57,7 +57,7 @@ class Api::V1::DaysController < ApplicationController
     private
 
     def day_params
-      params.require(:day).permit(:name, :date, entries_attributes: [:content, :day_id, :category_id], image_attributes: [:url, :caption, :day_id])
+      params.require(:day).permit(:name, :date, :user_id, entries_attributes: [:content, :day_id, :category_id], image_attributes: [:url, :caption, :day_id])
 
     end
 end
