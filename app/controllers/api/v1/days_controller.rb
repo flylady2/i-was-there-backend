@@ -22,9 +22,9 @@ class Api::V1::DaysController < ApplicationController
   end
 
   def create
-
-    @day = Day.new(day_params, user_id: current_user.id)
-
+    #byebug
+    @day = Day.new(day_params)
+    #byebug
     if @day.save
 
       @entries = @day.entries.build([{content: params["entry_content_1"], category_id: params["category_id_1"]}, {content: params["entry_content_2"], category_id: params["category_id_2"]}, {content: params["entry_content_3"], category_id: params["category_id_3"]}, {content: params["entry_content_4"], category_id: params["category_id_4"]}, {content: params["entry_content_5"], category_id: params["category_id_5"]}, {content: params["entry_content_6"], category_id: params["category_id_6"]}])
